@@ -11,21 +11,22 @@
 <table class="table " >
   <thead>
   <tr>
-  <th>Giorno Orario</th>
-  <th>Temperature</th>
-  <th>Umiditá</th>
-  <th>Situazione</th>
-  <th>Probabilita precipitazioni</th>
-  <th>Vento</th>
+  <th scope="col">Giorno Orario</th>
+  <th scope="col">Temperature</th>
+  <th scope="col">Umiditá</th>
+  <th scope="col">Situazione</th>
+  <th scope="col">Probabilita precipitazioni</th>
+  <th scope="col">Vento</th>
 </tr>
 </thead>
-  <tr>
-    <td>{{this.risultato.currentConditions.dayhour}}</td>
-    <td>{{this.risultato.currentConditions.temp.c+"C"+"-"+this.risultato.currentConditions.temp.f+"F"}}</td>
-    <td>{{this.risultato.currentConditions.humidity}}</td>
-    <td>{{this.risultato.currentConditions.comment}}</td>
-    <td>{{this.risultato.currentConditions.precip}}</td>
-    <td>{{this.risultato.currentConditions.wind.km+"km"}}</td>
+
+<tr>
+    <td><p *ngIf="!loading">{{this.risultato.currentConditions.dayhour}}  </p>                                                    <img *ngIf="loading" [src]=imgLoading height="50px" width="50px"></td>
+    <td><p *ngIf="!loading">{{this.risultato.currentConditions.temp.c+"C"+"-"+this.risultato.currentConditions.temp.f+"F"}} </p>   <img *ngIf="loading" [src]=imgLoading height="50px" width="50px">    </td>
+    <td><p *ngIf="!loading">{{this.risultato.currentConditions.humidity}}  </p>                                                    <img *ngIf="loading" [src]=imgLoading height="50px" width="50px"></td>
+    <td><p *ngIf="!loading">{{this.risultato.currentConditions.comment}}   </p>                                                    <img *ngIf="loading" [src]=imgLoading height="50px" width="50px"></td>
+    <td><p *ngIf="!loading">{{this.risultato.currentConditions.precip}}    </p>                                                    <img *ngIf="loading" [src]=imgLoading height="50px" width="50px"></td>
+    <td><p *ngIf="!loading">{{this.risultato.currentConditions.wind.km+"km"}}</p>                                                  <img *ngIf="loading" [src]=imgLoading height="50px" width="50px">                                   </td> 
   </tr>
 </table>
 

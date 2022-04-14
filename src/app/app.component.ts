@@ -8,10 +8,12 @@ import { AppService } from './app.component.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Controlla meteo';
+  title = 'Meteo';
+  imgLoading='https://media2.giphy.com/media/3o7bu3XilJ5BOiSGic/giphy.gif'
   lat = 51.678418;
   lng = 7.809007;
   risultato:any;
+  loading=true;
   zone:any;
   
 
@@ -19,6 +21,8 @@ export class AppComponent {
   
   
   mapClick(e:any){
+    
+    this.loading=true;
     this.zone="Sto Caricando";
     this.lat=e.coords.lat
     this.lng=e.coords.lng
@@ -32,6 +36,7 @@ export class AppComponent {
               this.risultato=meteo;
               console.log(this.risultato)
               console.log(this.risultato.currentConditions)
+              this.loading=!this.loading
           }
         })
         
