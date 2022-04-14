@@ -19,6 +19,7 @@ export class AppComponent {
   
   
   mapClick(e:any){
+    this.zone="Sto Caricando";
     this.lat=e.coords.lat
     this.lng=e.coords.lng
     this.appService.getData(e.coords.lat,e.coords.lng).subscribe({
