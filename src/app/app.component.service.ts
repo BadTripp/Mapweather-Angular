@@ -11,8 +11,18 @@ export class AppService {
     getData(lat:any,lng:any):Observable<any>{
         
 
-        let url="https://nominatim.openstreetmap.org/reverse?lat="+lat+"&lon="+lng;
+        let url="https://nominatim.openstreetmap.org/reverse?format=json&lat="+lat+"&lon="+lng;
         
         return this.http.get<any>(url);
+
+        
+    }
+
+    getWeather(town:string):Observable<any>{
+        console.log(town.replace(/[^a-zA-Z ]/g, ""))
+        let url="https://weatherdbi.herokuapp.com/data/weather/"+town.replace(/[^a-zA-Z ]/g, "");
+        
+        return this.http.get<any>(url);
+
     }
 }
