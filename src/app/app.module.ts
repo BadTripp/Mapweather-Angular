@@ -15,7 +15,6 @@ import { AppService } from './app.component.service';
     
   ],
   imports: [
-
     HttpClientModule,
     FormsModule,
     AgmCoreModule.forRoot({

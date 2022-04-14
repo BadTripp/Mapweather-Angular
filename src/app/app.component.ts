@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.component.service';
 
 
@@ -7,19 +7,34 @@ import { AppService } from './app.component.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Meteo';
-  imgLoading='https://media2.giphy.com/media/3o7bu3XilJ5BOiSGic/giphy.gif'
+  imgLoading='https://icon-library.com/images/loading-icon-transparent-background/loading-icon-transparent-background-12.jpg'
   lat = 51.678418;
   lng = 7.809007;
   risultato:any;
   loading=true;
-  zone:any;
+  zone="";
   
 
   constructor(private appService:AppService){}
+  ngOnInit(): void {
+    this.zone="";
+    
+  }
   
-  
+  mapWeather(zona:any){
+    this.loading=true;
+    this.appService.getWeather(zona).subscribe({
+      next:(meteo:any)=>{
+          this.risultato=meteo;
+          console.log(this.risultato)
+          console.log(this.risultato.currentConditions)
+          this.loading=!this.loading
+      }
+    })
+  }
+
   mapClick(e:any){
     
     this.loading=true;
@@ -31,14 +46,7 @@ export class AppComponent {
         this.risultato=dato;
         console.log(this.risultato)
         this.zone=this.risultato.address.state
-        this.appService.getWeather(this.risultato.address.state).subscribe({
-          next:(meteo:any)=>{
-              this.risultato=meteo;
-              console.log(this.risultato)
-              console.log(this.risultato.currentConditions)
-              this.loading=!this.loading
-          }
-        })
+        this.mapWeather(this.zone)
         
       }
 

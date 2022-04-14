@@ -1,22 +1,35 @@
 <h1 class="text-center">{{ title }}</h1>
 
-<div class="container">
+<div class="containerMap">
 <agm-map (mapClick)="mapClick($event)" [latitude]="lat" [longitude]="lng">
   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
 </agm-map>
+
+</div>
+<div class="row d-flex justify-content-center">
+  <input (change)="mapWeather(zone)"  [(ngModel)]="zone"placeholder="Digita o clicca sulla mappa una localita">
+  
+</div>
+<div class="column d-flex justify-content-center">
+    <p>{{zone}}</p>
+  <img *ngIf="!loading"  [src]="this.risultato.currentConditions.iconURL"><img *ngIf="loading" [src]=imgLoading height="50px" width="50px">
 </div>
 
-<img [src]="this.risultato.currentConditions.iconURL">
-      {{zone}}
+
+
+      
+<div class="container">
+  
+<div class="table-responsive-sm">
 <table class="table " >
   <thead>
   <tr>
-  <th scope="col">Giorno Orario</th>
-  <th scope="col">Temperature</th>
-  <th scope="col">Umiditá</th>
-  <th scope="col">Situazione</th>
-  <th scope="col">Probabilita precipitazioni</th>
-  <th scope="col">Vento</th>
+  <th >Giorno Orario</th>
+  <th >Temperature</th>
+  <th >Umiditá</th>
+  <th >Situazione</th>
+  <th >Probabilita precipitazioni</th>
+  <th >Vento</th>
 </tr>
 </thead>
 
@@ -28,7 +41,10 @@
     <td><p *ngIf="!loading">{{this.risultato.currentConditions.precip}}    </p>                                                    <img *ngIf="loading" [src]=imgLoading height="50px" width="50px"></td>
     <td><p *ngIf="!loading">{{this.risultato.currentConditions.wind.km+"km"}}</p>                                                  <img *ngIf="loading" [src]=imgLoading height="50px" width="50px">                                   </td> 
   </tr>
+
 </table>
+</div>
+</div>
 
 
 <!--
